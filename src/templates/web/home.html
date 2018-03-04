@@ -50,3 +50,22 @@
 		</div>
 	</section>
 {% endblock %}
+
+
+{% block js_content %}
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".slider_mas_buscados").bxSlider({
+			auto:true,
+			pager:false,
+			minSlides: 3,
+			maxSlides: 3,
+			slideWidth: 200,
+			slideMargin: 10,
+			moveSlides: 3,
+			mode:'horizontal'
+		});
+	});
+
+</script>
+{% endblock %}

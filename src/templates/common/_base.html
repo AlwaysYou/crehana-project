@@ -33,21 +33,10 @@
 			{% block content %}{% endblock %}
 			<!-- CONTENT END -->
 </body>
+{% block js_content %}
+
+{% endblock %}
 <script type="text/javascript" src="{% static '' %}css/js/jquery.bxslider.min.js"></script>
 <script type="text/javascript" src="{% static '' %}css/js/mediaelement/mediaelement.js"></script>
-<script type="text/javascript">
-	$(document).ready(function(){
-		$(".slider_mas_buscados").bxSlider({
-			auto:true,
-			pager:false,
-			minSlides: 3,
-			maxSlides: 3,
-			slideWidth: 200,
-			slideMargin: 10,
-			moveSlides: 3,
-			mode:'horizontal'
-		});
-	});
 
-</script>
 </html>
