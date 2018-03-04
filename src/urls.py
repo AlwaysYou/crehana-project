@@ -13,6 +13,8 @@ ADMIN_URL = settings.ADMIN_URL
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'', include(web_urls, namespace='web')),
+    url(r'^usuarios/', include(usuarios_urls, namespace='usuarios')),
+    url(r'^productos/', include(usuarios_urls, namespace='productos')),
 
 
 ] + (static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) +
