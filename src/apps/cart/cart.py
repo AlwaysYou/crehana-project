@@ -71,6 +71,7 @@ class Cart:
             item.unit_price = unit_price
             item.quantity = quantity
             item.producto = product.nombre
+            item.codigo = product.codigo
             item.save()
         else:
             # ItemAlreadyExists
@@ -115,7 +116,7 @@ class Cart:
     def summary(self):
         result = 0
         for item in self.cart.item_set.all():
-            result += item.total_price
+            result += item.unit_price
         return result
 
     def summary_base(self):

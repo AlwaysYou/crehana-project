@@ -11,6 +11,19 @@ from apps.cart.cart import Cart
 # Create your views here.
 
 def mi_carrito(request):
+    try:
+        profile = request.user.userprofile
+    except:
+        print("error")
+        return redirect(reverse('usuarios:user_logout'))
+    if profile:
+        cart = Cart(request)
+        flag_mostrar_productos = False
+        cantidad_items = cart.count()
+        if cantidad_items > 0:
+            flag_mostrar_productos = True
+        items = cart.cart.item_set.all()
+        items_cursos = [(item, item.get_product()) for item in items]
     return render(request, 'pedidos/mi_carrito.html', locals())
 
 
@@ -35,4 +48,14 @@ def add_to_cart(request):
         return redirect(reverse('usuarios:crear_cuenta'))
 
 
+    return redirect(reverse('pedidos:mi_carrito'))
+
+
+def remove_from_cart(request):
+    print('VIEW: remove_from_cart')
+    curso_id = request.GET.get('curso_id')
+    curso_id = int(curso_id)
+    curso = get_object_or_404(Curso, id=curso_id)
+    cart = Cart(request)
+    cart.remove(curso)
     return redirect(reverse('pedidos:mi_carrito'))

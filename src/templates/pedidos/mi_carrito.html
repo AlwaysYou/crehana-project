@@ -17,86 +17,30 @@
 
 				<!-- bloque inferior-->
 				<div class="lista_cursos">
-					<div class="curso_seleccionado">
-						<div class="bloque_titulo_imagen">
-							<div class="img_cart_item">
-								<img  class="imagen_cart_item" src="http://bolsodemano.es/wp-content/uploads/2017/03/Carbotti-diseador-de-cuero-3-del-color-del-bolso-del-bolso-de-mano-cuadrada-comprador-de-la-mujer-negro-0-300x351.jpg" width="100px" height="100px">
+					{% for i in items_cursos %}
+					{% with item=i.0 curso=i.1 %}
+						<div class="curso_seleccionado">
+							<div class="bloque_titulo_imagen">
+								<div class="img_cart_item">
+									<img  class="imagen_cart_item" src="{{curso.img_curso.url}}" width="100px" height="100px">
+								</div>
+
+								<div class="descripcion_cart_item">
+									<span class="codigo_cart_item">#{{item.codigo}}</span>
+									<span class="nombre_cart_item">{{ item.producto }}</span>
+									<p class="stock">En STOCK</p>
+
+								</div>
 							</div>
-
-							<div class="descripcion_cart_item">
-								<span class="codigo_cart_item">#012452</span>
-								<span class="nombre_cart_item">Diseño Gráfico</span>
-								<p class="stock">En STOCK</p>
-
+							<div class="bloque_precio">
+								S/ {{ item.total_price|stringformat:".2f" }}
 							</div>
-						</div>
-						<div class="bloque_precio">
-							S/ 150
-						</div>
-						<div class="bloque_precio">
-							<a href="" class="remove"> x </a>
-						</div>
-					</div>
-					<div class="curso_seleccionado">
-						<div class="bloque_titulo_imagen">
-							<div class="img_cart_item">
-								<img  class="imagen_cart_item" src="http://bolsodemano.es/wp-content/uploads/2017/03/Carbotti-diseador-de-cuero-3-del-color-del-bolso-del-bolso-de-mano-cuadrada-comprador-de-la-mujer-negro-0-300x351.jpg" width="100px" height="100px">
-							</div>
-
-							<div class="descripcion_cart_item">
-								<span class="codigo_cart_item">#012452</span>
-								<span class="nombre_cart_item">Diseño Gráfico</span>
-								<p class="stock">En STOCK</p>
-
+							<div class="bloque_precio">
+								<a href="" class="remove"> x </a>
 							</div>
 						</div>
-						<div class="bloque_precio">
-							S/ 150
-						</div>
-						<div class="bloque_precio">
-							<a href="" class="remove"> x </a>
-						</div>
-					</div>
-					<div class="curso_seleccionado">
-						<div class="bloque_titulo_imagen">
-							<div class="img_cart_item">
-								<img  class="imagen_cart_item" src="http://bolsodemano.es/wp-content/uploads/2017/03/Carbotti-diseador-de-cuero-3-del-color-del-bolso-del-bolso-de-mano-cuadrada-comprador-de-la-mujer-negro-0-300x351.jpg" width="100px" height="100px">
-							</div>
-
-							<div class="descripcion_cart_item">
-								<span class="codigo_cart_item">#012452</span>
-								<span class="nombre_cart_item">Diseño Gráfico</span>
-								<p class="stock">En STOCK</p>
-
-							</div>
-						</div>
-						<div class="bloque_precio">
-							S/ 150
-						</div>
-						<div class="bloque_precio">
-							<a href="" class="remove"> x </a>
-						</div>
-					</div>
-					<div class="curso_seleccionado">
-						<div class="bloque_titulo_imagen">
-							<div class="img_cart_item">
-								<img  class="imagen_cart_item" src="http://bolsodemano.es/wp-content/uploads/2017/03/Carbotti-diseador-de-cuero-3-del-color-del-bolso-del-bolso-de-mano-cuadrada-comprador-de-la-mujer-negro-0-300x351.jpg" width="100px" height="100px">
-							</div>
-
-							<div class="descripcion_cart_item">
-								<span class="codigo_cart_item">#012452</span>
-								<span class="nombre_cart_item">Diseño Gráfico</span>
-								<p class="stock">En STOCK</p>
-
-							</div>
-						</div>
-						<div class="bloque_precio">
-							S/ 150
-						</div>
-						<div class="bloque_precio">
-							<a href="" class="remove"> x </a>
-						</div>
-					</div>
+					{% endwith %}
+					{% endfor %}
 
 				</div>
 			</div>
@@ -109,7 +53,7 @@
 						<span>Total:</span>
 					</div>
 					<div class="precios"> 
-						<span>S/. 1500</span>
+						<span>S/. {{cart.summary}}</span>
 						<span>S/. 200</span>
 						<span>S/. 20</span>
 						<span>S/. 1720</span>
