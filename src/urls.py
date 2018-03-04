@@ -1,6 +1,7 @@
 
 from django.conf.urls import url
 from django.contrib import admin
+from filebrowser.sites import site
 from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import url, include
@@ -14,6 +15,7 @@ ADMIN_URL = settings.ADMIN_URL
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^admin/filebrowser/', include(site.urls)),
     url(r'', include(web_urls, namespace='web')),
     url(r'^usuarios/', include(usuarios_urls, namespace='usuarios')),
     url(r'^productos/', include(productos_urls, namespace='productos')),

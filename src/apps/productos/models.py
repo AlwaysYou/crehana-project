@@ -21,7 +21,7 @@ class Categoria(models.Model):
         self.slug = uuslug(self.nombre, instance=self)
         super(Categoria, self).save(*args, **kwargs)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.nombre
 
 

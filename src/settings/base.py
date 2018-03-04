@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'filebrowser',
     'apps.web',
     'apps.pedidos',
     'apps.productos',
