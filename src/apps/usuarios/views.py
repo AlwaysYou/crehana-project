@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.template import RequestContext as ctx
 
 # Create your views here.
 
