@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Crehana | Registro</title>
+	<link rel="stylesheet" type="text/css" href="css/s1.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<!-- fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Ropa+Sans" rel="stylesheet">
+		<link rel="stylesheet" href="https://i.icomoon.io/public/temp/1013ff8fbd/UntitledProject/style-svg.css">
+		<script defer src="https://i.icomoon.io/public/temp/1013ff8fbd/UntitledProject/svgxuse.js">
+		</script>
+	<!-- endfornts -->
+
+	<!-- Slider -->
+	<link rel="stylesheet" type="text/css" href="css/jquery.bxslider.css">
+	<!-- endSlider -->
+
+	<!-- jquery -->
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+	<!-- endjquery -->
+
+	<link rel="stylesheet" href="https://i.icomoon.io/public/temp/1013ff8fbd/UntitledProject/style-svg.css">
+	<script defer src="https://i.icomoon.io/public/temp/1013ff8fbd/UntitledProject/svgxuse.js">
+	</script>
+	<!-- bootstrap -->
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+	<!-- end bootstrap-->
+</head>
+<body>
+	<header>
+		<div class="header_contenedor">
+			<!-- Hijo 1 -->
+			<img class="imagen-header" src="../img/logo-hans.png"  height="75px">
+			<!-- Hijo 2 -->
+			<div class="menu-wrapper">
+				<ul id="menu-header">
+					<li class="item-menu-header titulo_header">Productos</li>
+					<li class="item-menu-header">Mi Carrito</li>
+					<input class="buscador" type="search" 
+					placeholder="Buscar Producto">
+					<svg class="icon icon-search" height="10px">
+					<use xlink:href="#icon-search"></use></svg>
+				</ul>
+			</div>
+			<div>
+			</div>
+		</div>
+	</header>
+
+	<section class="mas_buscados">
+		<div class="mas_buscados__bloque container_css_registro">
+			<span class="titulo_home"> Se parte de <span style="color:#8e44ad">Crehana</span> </span>
+			<form action="" class="form-horizontal" id="identicalForm" data-toggle="validator" role="form" >
+				<div class="form-group has-danger">
+					<label class="control-label col-md-4"> Email: </label>
+						<div class="col-md-8">
+							<input class="form-control" name="email" placeholder="Email" required>
+						</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-md-4"> Password: </label>
+						<div class="col-md-8">
+							<input id="pass" class="form-control" name="password" placeholder="Correo" required type="password">
+						</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-md-4"> Repita Password: </label>
+						<div class="col-md-8">
+							<input id="cpass" class="form-control" name="password"  placeholder="Confirm Password" required type="password">
+						</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-2 col-md-offset-4">
+						<button class="btn btn-primary"> Registrarse </button>
+					</div>
+				</div>
+
+			</form>
+		</div>
+	</section>
+</body>
+
+<script type="text/javascript" src="css/js/jquery.bxslider.min.js"></script>
+<script type="text/javascript" src="css/js/mediaelement/mediaelement.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$('.btn-primary').on('click',function(){
+	   if($('#pass').val()!=$('#cpass').val()){
+	       alert('Password not matches');
+	       return false;
+	   }
+	   return true;
+	});
+
+
+});
+
+</script>
+</html>

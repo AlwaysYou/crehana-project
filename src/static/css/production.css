@@ -1,0 +1,55 @@
+.wancho {
+  width: 96%;
+  max-width: 960px;
+  margin: auto;
+}
+body {
+  font-size: 15px;
+  font-family: t-0;
+  color: c-0;
+}
+a {
+  color: inherit;
+}
+a:focus {
+  outline: none;
+}
+.link:hover {
+  text-decoration: underline;
+  color: c-1;
+}
+.relative {
+  position: relative;
+}
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+.envolve {
+  overflow: hidden;
+}
+.child-ib>* {
+  display: inline-block;
+  vertical-align: top;
+}
+.no-style {
+  line-height: 1.4;
+}
+.clearfix:after {
+  content: "";
+  clear: both;
+  height: 0;
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+}
+.g-text p {
+  margin-bottom: 0;
+  margin-top: s-5;
+  line-height: 1.2;
+}
+.g-text p:first-child {
+  margin-top: 0;
+}

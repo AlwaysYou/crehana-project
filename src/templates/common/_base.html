@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<title> Crehana | Home</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/s1.css' %}">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	{% block head %}
+
+    {% endblock head %}
+	<!-- fonts -->
+
+		<link href="https://fonts.googleapis.com/css?family=Ropa+Sans" rel="stylesheet">
+		<link rel="stylesheet" href="https://i.icomoon.io/public/temp/1013ff8fbd/UntitledProject/style-svg.css">
+		<script defer src="https://i.icomoon.io/public/temp/1013ff8fbd/UntitledProject/svgxuse.js">
+		</script>
+	<!-- endfornts -->
+
+	<!-- Slider -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/jquery.bxslider.css' %}">
+	<!-- endSlider -->
+
+	<!-- jquery -->
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+
+	<!-- endjquery -->
+
+</head>
+<body>
+	{% include "common/_header.html" %}
+
+			<!-- CONTENT START -->
+			{% block content %}{% endblock %}
+			<!-- CONTENT END -->
+</body>
+<script type="text/javascript" src="{% static '' %}css/js/jquery.bxslider.min.js"></script>
+<script type="text/javascript" src="{% static '' %}css/js/mediaelement/mediaelement.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".slider_mas_buscados").bxSlider({
+			auto:true,
+			pager:false,
+			minSlides: 3,
+			maxSlides: 3,
+			slideWidth: 200,
+			slideMargin: 10,
+			moveSlides: 3,
+			mode:'horizontal'
+		});
+	});
+
+</script>
+</html>
