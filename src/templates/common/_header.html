@@ -2,12 +2,18 @@
 	<header>
 		<div class="header_contenedor">
 			<!-- Hijo 1 -->
-			<img class="imagen-header" src="{% static 'css/img/logo-hans.png' %}"  height="75px">
+			<a href="{% url 'web:home' %}">
+				<img class="imagen-header" src="{% static 'css/img/logo-hans.png' %}"  height="75px">
+			</a>
 			<!-- Hijo 2 -->
 			<div class="menu-wrapper">
 				<ul id="menu-header">
-					<li class="item-menu-header">Productos</li>
-					<li class="item-menu-header">Mi Carrito</li>
+					<a href="{% url 'productos:listado' %}">
+						<li class="item-menu-header">Productos</li>
+					</a>
+					<a href="{% url 'pedidos:mi_carrito' %}">
+						<li class="item-menu-header">Mi Carrito</li>
+					</a>
 					<input class="buscador" type="search" 
 					placeholder="Buscar Producto">
 					<svg class="icon icon-search" height="10px">

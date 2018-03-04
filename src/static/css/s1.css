@@ -3,6 +3,10 @@ body {
   margin: 0;
   font-family: 'Ropa Sans', sans-serif;
 }
+a {
+  color: inherit; /* blue colors for links too */
+  text-decoration: inherit; /* no underline */
+}
 header {
   border: 2px dashed #4682b4;
   padding: 13px 0;
@@ -10,7 +14,7 @@ header {
 }
 .header_contenedor {
   width: 100%;
-  padding-right: 30px;
+  margin-right: 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
