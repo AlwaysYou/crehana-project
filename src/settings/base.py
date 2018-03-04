@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/1.10/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.10/ref/settings/
 """
+AUTH_SECRET_KEY = "AUTH_SECRET"
 
 import os
 from .util import get_env
@@ -39,6 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'apps.web',
+    'apps.pedidos',
+    'apps.productos',
+    'apps.usuarios',
 ]
 
 MIDDLEWARE = [
