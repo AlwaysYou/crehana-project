@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from pbkdf2 import crypt
 from django.conf import settings
 import re
-
+from apps.cart.models import Cart
 SECRET_KEY = settings.AUTH_SECRET_KEY
 SALT = ''.join(re.findall("[a-zA-Z0-9]+", SECRET_KEY))
 NUMERO_DE_ITERACIONES = 500
@@ -11,6 +11,11 @@ NUMERO_DE_ITERACIONES = 500
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
     email = models.EmailField()
+
+    # relacion con el cart
+    cart = models.OneToOneField(Cart, 
+                                blank=True,
+                                null=True, on_delete=models.SET_NULL)
 
     class Meta:
         verbose_name = 'Usuarios Registrados'
