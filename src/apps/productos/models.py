@@ -26,10 +26,11 @@ class Categoria(models.Model):
 
 
 class Curso(models.Model):
+    mostrar_home = models.BooleanField("¿Mostrar en el Home?", default=False)
     fk_categoria = models.ForeignKey(Categoria,
     							     related_name="prod_cat",
     							     verbose_name="Categoria",
-    							     blank=True)
+    							     blank=True, null=True)
 
     nombre = models.CharField('Nombre del Curso', max_length=120)
     position = models.SmallIntegerField(u'Posición', default=0)
