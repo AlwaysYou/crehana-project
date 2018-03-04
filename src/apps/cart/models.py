@@ -28,8 +28,7 @@ class ItemManager(models.Manager):
 class Item(models.Model):
     cart = models.ForeignKey(Cart, verbose_name=_('cart'))
     quantity = models.PositiveIntegerField(verbose_name=_('quantity'))
-    unit_price_base = models.DecimalField(max_digits=18, decimal_places=2,
-                                          verbose_name=_('unit base price'))
+
     unit_price = models.DecimalField(max_digits=18, decimal_places=2, verbose_name=_('unit price'))
     # product as generic relation
     content_type = models.ForeignKey(ContentType)
@@ -37,7 +36,6 @@ class Item(models.Model):
     precio_total_adicional = models.DecimalField(max_digits=18, decimal_places=2, default=0)
     objects = ItemManager()
     producto = models.CharField('Producto/Servicio', blank=True, max_length=200)
-    presentacion = models.CharField('Presentacion', blank=True, max_length=200)
 
     class Meta:
         verbose_name = _('item')

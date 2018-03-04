@@ -26,6 +26,7 @@ def login(request):
                 print("NO EXISTE USER")
         else:
             print(form.errors, "<- errors")
+            error = form.errors
             print("FORM INVALIDO")
 
     if request.user.is_authenticated:

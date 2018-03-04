@@ -14,11 +14,15 @@
 						<div class="precio_producto">
 							<span>S/ 150 </span>
 						</div>
-						<button class="button -green center"> Agregar al carrito </button>
+						<button type="submit" class="button -green center anadir-carrito" data-product="{{ curso.id }}"> Agregar al carrito </button>
 					</div>
 
 				{% endfor %}
-
+					<form action="{% url 'pedidos:add_to_cart' %}" method="POST" id="add-to-cart-form">
+						{% csrf_token %}
+					<input type="hidden" name="quantity" value="1" class="quantity" id="quantity">
+					<input type="hidden" name="product_id" id="id_curso">
+					</form>
 			</div>
 		</div>
 	</section>
@@ -39,6 +43,14 @@
 			mode:'horizontal'
 		});
 	});
+		$(".anadir-carrito").on('click', function(event) {
+			console.log("click al boton")
+			event.preventDefault();
+			id_curso = $(this).attr('data-product')
+			console.log(id_curso, 'DATO');
+			$('#id_curso').val(id_curso)
+			$('#add-to-cart-form').submit();
+		});
 
 </script>
 {% endblock %}
