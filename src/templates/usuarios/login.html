@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block head %}
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/css/bootstrapValidator.css"></script>
 	<!-- bootstrap -->
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
@@ -13,7 +14,8 @@
 <section class="mas_buscados">
 	<div class="mas_buscados__bloque container_css_login">
 		<span class="titulo_home"> Hora de Hacer Logging </span>
-		<form action="" class="form-horizontal">
+		<form action="." method="POST" class="form-horizontal form-log">
+			{% csrf_token %}
 			<div class="form-group has-danger">
 				<label class="control-label col-md-4"> Email: </label>
 					<div class="col-md-8">
@@ -24,13 +26,13 @@
 			<div class="form-group">
 				<label class="control-label col-md-4"> Password: </label>
 					<div class="col-md-8">
-						<input class="form-control" placeholder="Correo">
+						<input class="form-control" placeholder="password" name="password">
 					</div>
 			</div>
 
 			<div class="form-group">
 				<div class="col-md-2 col-md-offset-4">
-					<button class="btn btn-primary"> Ingresar </button>
+					<button class="btn btn-primary login"> Ingresar </button>
 				</div>
 			</div>
 			<div class="row col-md-12 col-md-offset-2">
@@ -41,5 +43,30 @@
 </section>
 
 
+{% endblock %}
+
+{% block js_content %}
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.login').click(function(e){
+        e.preventDefault();
+		var valid = $('.form-log').serialize();
+		console.log(valid)
+		if(valid){
+			console.log("SOY VALIDO")
+			$('.form-log').submit()
+		}
+		else{
+			alert("error")
+		}
+        
+    })
+
+});
+
+
+
+</script>
 {% endblock %}
 
