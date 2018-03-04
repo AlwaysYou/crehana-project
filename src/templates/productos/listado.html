@@ -8,81 +8,28 @@
 		<div class="listado__categorias">
 			<ul class="ul_categorias">
 				<li class="item_categoria titulo_categoria">Categorias</li>
-
-				<li class="item_categoria">Diseño</li>
-				<li class="item_categoria">Ilustración</li>
-				<li class="item_categoria">Animaciones</li>
-				<li class="item_categoria">3d</li>
-				<li class="item_categoria">Retoques</li>
+				{% for categoria in categorias %}
+					<a href="{% url 'productos:curso_select' categoria.slug %}">
+						<li class="item_categoria" {% if categoria.nombre == categoria_selected.nombre %} style='text-decoration:underline' {% endif %}>{{categoria.nombre}}</li>
+					</a>
+				{% endfor %}
 			</ul>
 		</div>
 		<div class="listado__productos">
 			<div class="productos">
+				{% for curso in cursos %}
 				<div class="caja_producto">
-					<img  src="http://bolsodemano.es/wp-content/uploads/2017/03/Carbotti-diseador-de-cuero-3-del-color-del-bolso-del-bolso-de-mano-cuadrada-comprador-de-la-mujer-negro-0-300x351.jpg" width="200px" height="200px">
+					<img  src="{{curso.img_curso.url}}" width="200px" height="200px">
 					<div class="titulo_producto">
-						<span>Cartera 3</span>
+						<span>{{curso.nombre}}</span>
 					</div>
 					<div class="precio_producto">
-						<span>S/ 150 </span>
+						<span>S/ {{curso.precio}} </span>
 					</div>
 					<button class="button -green center"> Agregar al carrito </button>
 				</div>
+				{% endfor %}
 
-				<div class="caja_producto">
-					<img  src="http://bolsodemano.es/wp-content/uploads/2017/03/Carbotti-diseador-de-cuero-3-del-color-del-bolso-del-bolso-de-mano-cuadrada-comprador-de-la-mujer-negro-0-300x351.jpg" width="200px" height="200px">
-					<div class="titulo_producto">
-						<span>Cartera 3</span>
-					</div>
-					<div class="precio_producto">
-						<span>S/ 150 </span>
-					</div>
-					<button class="button -green center"> Agregar al carrito </button>
-				</div>
-
-				<div class="caja_producto">
-					<img  src="http://bolsodemano.es/wp-content/uploads/2017/03/Carbotti-diseador-de-cuero-3-del-color-del-bolso-del-bolso-de-mano-cuadrada-comprador-de-la-mujer-negro-0-300x351.jpg" width="200px" height="200px">
-					<div class="titulo_producto">
-						<span>Cartera 3</span>
-					</div>
-					<div class="precio_producto">
-						<span>S/ 150 </span>
-					</div>
-					<button class="button -green center"> Agregar al carrito </button>
-				</div>
-
-				<div class="caja_producto">
-					<img  src="http://bolsodemano.es/wp-content/uploads/2017/03/Carbotti-diseador-de-cuero-3-del-color-del-bolso-del-bolso-de-mano-cuadrada-comprador-de-la-mujer-negro-0-300x351.jpg" width="200px" height="200px">
-					<div class="titulo_producto">
-						<span>Cartera 3</span>
-					</div>
-					<div class="precio_producto">
-						<span>S/ 150 </span>
-					</div>
-					<button class="button -green center"> Agregar al carrito </button>
-				</div>
-
-				<div class="caja_producto">
-					<img  src="http://bolsodemano.es/wp-content/uploads/2017/03/Carbotti-diseador-de-cuero-3-del-color-del-bolso-del-bolso-de-mano-cuadrada-comprador-de-la-mujer-negro-0-300x351.jpg" width="200px" height="200px">
-					<div class="titulo_producto">
-						<span>Cartera 3</span>
-					</div>
-					<div class="precio_producto">
-						<span>S/ 150 </span>
-					</div>
-					<button class="button -green center"> Agregar al carrito </button>
-				</div>
-
-				<div class="caja_producto">
-					<img  src="http://bolsodemano.es/wp-content/uploads/2017/03/Carbotti-diseador-de-cuero-3-del-color-del-bolso-del-bolso-de-mano-cuadrada-comprador-de-la-mujer-negro-0-300x351.jpg" width="200px" height="200px">
-					<div class="titulo_producto">
-						<span>Cartera 3</span>
-					</div>
-					<div class="precio_producto">
-						<span>S/ 150 </span>
-					</div>
-					<button class="button -green center"> Agregar al carrito </button>
-				</div>
 			</div>
 		</div>
 
