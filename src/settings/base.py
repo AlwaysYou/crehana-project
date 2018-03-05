@@ -45,7 +45,9 @@ INSTALLED_APPS = [
     'apps.pedidos',
     'apps.productos',
     'apps.usuarios',
-    'apps.cart'
+    'apps.cart',
+    'admin_reorder',
+
 ]
 
 MIDDLEWARE = [
@@ -56,6 +58,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'admin_reorder.middleware.ModelAdminReorder',
+
 ]
 
 ROOT_URLCONF = 'urls'
@@ -152,3 +156,25 @@ SERVER_EMAIL = ENV.get('SERVER_EMAIL', '')
 EMAIL_PORT = ENV.get('EMAIL_PORT', '')
 EMAIL_USE_TLS = True
 ADMIN_URL = 'admin-privated'
+
+
+
+ADMIN_REORDER = (
+    # Keep original label and models
+
+    # Reorder app models
+    {'app': 'auth', 'label': 'Administración de Usuarios',
+     'models': ('auth.user',
+                )},
+
+    {'app': 'usuarios', 'label': 'Usuarios Registrados',
+            'models': ('usuarios.UserProfile',
+                       )},
+    {'app': 'productos', 'label': 'Productos',
+            'models': ('productos.Categoria',
+                       'productos.Curso'
+                       )},
+    {'app': 'pedidos', 'label': 'Pedidos',
+            'models': ('pedidos.Pedido',
+                       )},
+)
