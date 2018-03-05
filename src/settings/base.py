@@ -177,4 +177,5 @@ ADMIN_REORDER = (
     {'app': 'pedidos', 'label': 'Pedidos',
             'models': ('pedidos.Pedido',
                        )},
+
 )

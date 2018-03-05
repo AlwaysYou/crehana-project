@@ -21,7 +21,7 @@ class UserProfile(models.Model):
         verbose_name = 'Usuarios Registrados'
         verbose_name_plural = 'Usuarios Registrados'
 
-    def __unicode__(self):
+    def __str__(self):
         return u'{0}'.format(self.email)
 
     def is_password_valid(self, password):
@@ -29,6 +29,8 @@ class UserProfile(models.Model):
 
     def is_authenticated(self):
         return True
+    def get_creation_date(self):
+        return self.cart.creation_date
 
     @property
     def is_staff(self):
