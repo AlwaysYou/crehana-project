@@ -7,6 +7,7 @@ app_name = 'productos'
 
 urlpatterns = [
     url(r'^listado/$', views.listado, name='listado'),
+    url(r'^resultados/$', views.buscar, name='buscar'),
     url(r'^(?P<slug>[\w-]+)/$', views.listado, name='curso_select'),
 
 ]

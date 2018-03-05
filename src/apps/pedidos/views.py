@@ -10,6 +10,7 @@ from .utils import get_next_codigo_pedido
 from apps.cart.cart import Cart
 from .forms import PedidoForm
 from apps.web.models import InformacionGeneral
+from apps.pedidos.models import Pedido
 # Create your views here.
 
 def mi_carrito(request):
@@ -62,12 +63,9 @@ def mi_carrito(request):
 
 @require_POST
 def add_to_cart(request):
-    print("ADD")
-    print(request.POST, "<- POST")
     product_id = request.POST.get('product_id')
     quantity = 1
     curso = get_object_or_404(Curso, id=product_id)
-    print(curso, "<- curso")
     cart = Cart(request)
     cart.add(curso, curso.precio, quantity)
     try:
@@ -77,7 +75,6 @@ def add_to_cart(request):
             profile.cart = cart.cart
             profile.save()
     except:
-        print("ERRORR")
         return redirect(reverse('usuarios:crear_cuenta'))
 
 
@@ -94,5 +91,11 @@ def remove_from_cart(request):
     return redirect(reverse('pedidos:mi_carrito'))
 
 def gracias(request):
+    try:
+        profile = UserProfile.objects.get(user__id=request.user.id)
+        pedidos_from_user = Pedido.objects.filter(usuario=profile).order_by('-created')[0]
+    except:
+        pedidos_from_user = None
+    print(pedidos_from_user, "<- get_last_pedido")
 
     return render(request, 'pedidos/gracias.html', locals())

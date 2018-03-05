@@ -1,0 +1,12 @@
+.button.-green {
+  color: #fff;
+  background: #3dd28d;
+  padding 6px
+}
+
+.bloque_boton_pago {
+  width: 300px;
+  height: 30px;
+  text-align: center;
+  line-height: 50px;
+}

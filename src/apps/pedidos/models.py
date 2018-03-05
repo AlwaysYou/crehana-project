@@ -8,7 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 # Create your models here.
 class Pedido(models.Model):
     created = models.DateTimeField(editable=False, auto_now_add=True, blank=True, null=True)
-
+    estado = models.CharField("Estado", max_length=400)
     numero_pedido = models.CharField(
         'Código de Pedido',
         max_length=12,

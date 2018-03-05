@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Categoria, Curso
+from django.core.urlresolvers import reverse
 # Create your views here.
 from apps.cart.cart import Cart
 
@@ -36,4 +37,18 @@ def listado(request, slug=None):
             list_id_items.append(row.object_id)
     return render(request, 'productos/listado.html', locals())
 
+
+def buscar(request):
+    busqueda = request.GET.get('palabra_magica')
+    if busqueda:
+        try:
+            cursos = Curso.objects.filter(
+                name__icontains=busqueda).order_by('position')
+            if len(cursos) > 0:
+                return render(request, 'productos/listado.html', locals())
+            else:
+                return redirect(reverse('web:home'))
+
+        except ValueError:
+            return redirect(reverse('web:home'))
 
