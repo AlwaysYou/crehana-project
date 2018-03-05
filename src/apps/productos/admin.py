@@ -18,7 +18,7 @@ class CursoAdmin(admin.ModelAdmin):
     list_display = 'nombre', 'fk_categoria', 'miniatura', 'mostrar_home', 'position'
     list_editable = 'position',
     ordering = 'position',
-
+    list_filter = "fk_categoria__nombre",
     def miniatura(self, obj):
         try:
             if obj.img_curso.path and obj.img_curso.filetype == "Image":

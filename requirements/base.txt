@@ -15,4 +15,5 @@ django-filebrowser-no-grappelli==3.7.0
 Pillow==4.1.1
 psycopg2==2.7.4
 django-modeladmin-reorder==0.2
+singlemodeladmin==0.7
 

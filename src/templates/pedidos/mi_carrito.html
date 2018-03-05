@@ -51,15 +51,13 @@
 				<div class="bloque_interno_resumen">
 					<div class="descripcion"> 
 						<span>Subtotal:</span>
-						<span>Shipping:</span>
 						<span>Tax:</span>
 						<span>Total:</span>
 					</div>
 					<div class="precios"> 
 						<span>S/. {{cart.summary}}</span>
-						<span>S/. 200</span>
-						<span>S/. 20</span>
-						<span>S/. 1720</span>
+						<span>S/. {{taxi}}</span>
+						<span>S/. {{total}}</span>
 					</div>
 				</div>
 				<div class="bloque_boton_pago">
@@ -91,7 +89,6 @@ $(document).ready(function(){
 	})
 
 	$('.boton_pago').on('click', function(e){
-		alert("Hola")
 		e.preventDefault();
 		$('#form_pago').submit();
 	})

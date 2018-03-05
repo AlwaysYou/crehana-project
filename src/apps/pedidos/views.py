@@ -9,6 +9,7 @@ from django.core.urlresolvers import reverse, reverse_lazy
 from .utils import get_next_codigo_pedido
 from apps.cart.cart import Cart
 from .forms import PedidoForm
+from apps.web.models import InformacionGeneral
 # Create your views here.
 
 def mi_carrito(request):
@@ -29,6 +30,14 @@ def mi_carrito(request):
         items = cart.cart.item_set.all()
         items_cursos = [(item, item.get_product()) for item in items]
 
+    # Suma para el precio final
+    _subtotal = cart.summary()
+    info_general = InformacionGeneral.objects.get(pk=1)
+    taxi = info_general.taxi
+    if taxi:
+        total = _subtotal + taxi
+    else:
+        total = _subtotal
     """ Bloque para pago """
     # Consultamos al numero de pedido
     if request.method == 'POST':

@@ -121,7 +121,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-pe'
 
 TIME_ZONE = 'UTC'
 
@@ -163,6 +163,9 @@ ADMIN_REORDER = (
     # Keep original label and models
 
     # Reorder app models
+    {'app': 'web', 'label': 'Información General',
+     'models': ('web.InformacionGeneral',
+                )},
     {'app': 'auth', 'label': 'Administración de Usuarios',
      'models': ('auth.user',
                 )},

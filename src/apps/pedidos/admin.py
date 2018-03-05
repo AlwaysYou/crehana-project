@@ -7,6 +7,7 @@ from .models import (Pedido)
 @admin.register(Pedido)
 class PedidoAdmin(admin.ModelAdmin):
     list_display = 'numero_pedido', 'usuario', 'created', 'ver_detalle_pedido'
+    exclude = 'cart',
 
     def ver_detalle_pedido(self, obj):
         url_change_password = urlresolvers.reverse('admin:cart_cart_change', args=(obj.cart.pk,))
