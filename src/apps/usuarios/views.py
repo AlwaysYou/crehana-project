@@ -14,36 +14,34 @@ from .forms import RegisterForm, LoginForm
 
 
 def login(request):
+    header = "login"
     if request.method == "POST":
+        error = False
         form = LoginForm(request.POST)
         if form.is_valid():
             user = form.auth()
+            """ Si existe el usuario """
             if user:
                 log_django(request, user)
                 return redirect("web:home")
-                print("LOGIN DENTOR DEL IF USER")
             else:
-                print("NO EXISTE USER")
+                error = True
         else:
-            print(form.errors, "<- errors")
-            error = form.errors
-            print("FORM INVALIDO")
+            error = True
 
+    """ Si el usuario ya ha sido logeado """
     if request.user.is_authenticated:
-        print(request.user)
         return redirect('web:home')
 
     return render(request, 'usuarios/login.html', locals())
 
 def crear_cuenta(request):
-    print("Crear cuenta!")
-    print(request.method, "<- metodo")
-    print(request.POST, "<- POST DATA")
+    header = "crear_cuenta"
+    error = False
     profile_form = RegisterForm(request.POST)
+    """ Si es un metodo POST """
     if request.method == "POST":
-        print("soy post")
         if profile_form.is_valid():
-            print("soy valido")
             password = request.POST['password']
             profile_form.save(password)
 
@@ -51,11 +49,10 @@ def crear_cuenta(request):
             log_django(request, user)
             return redirect(reverse('web:home'))
         else:
-            print(profile_form.errors, "<- errores del form")
+            error = True
             profile_form = RegisterForm()
-            return HttpResponseRedirect("/?error/")
     else:
-        print("no soy POST")
+        pass
     return render(request, 'usuarios/crear_cuenta.html', locals())
 
 

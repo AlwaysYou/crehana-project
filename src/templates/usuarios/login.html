@@ -2,22 +2,18 @@
 {% load static %}
 
 {% block head %}
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/css/bootstrapValidator.css"></script>
-	<!-- bootstrap -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<!-- end bootstrap-->
 
 {% endblock head %}
 
+
 {% block content %}
 
-{% if error.email %}
+{% if error %}
 <div class="alert alert-danger" style="text-align:center">
-	<strong> ¡ Ups ! </strong> El correo no existe
+	<strong> ¡ Ups ! </strong> El correo no existe o las contraseñas no coinciden
 </div>
 {% endif %}
+
 
 <section class="mas_buscados">
 	<div class="mas_buscados__bloque container_css_login">
@@ -34,7 +30,7 @@
 			<div class="form-group">
 				<label class="control-label col-md-4"> Password: </label>
 					<div class="col-md-8">
-						<input class="form-control" placeholder="password" name="password">
+						<input class="form-control" placeholder="password" name="password" type="password">
 					</div>
 			</div>
 

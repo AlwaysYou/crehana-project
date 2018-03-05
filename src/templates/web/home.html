@@ -1,4 +1,5 @@
 {% extends 'common/_base.html' %}
+{% load static %}
 
 {% block content %}
 	<section class="mas_buscados">
@@ -35,6 +36,8 @@
 
 
 {% block js_content %}
+<script type="text/javascript" src="{% static '' %}css/js/jquery.bxslider.min.js"></script>
+<script type="text/javascript" src="{% static '' %}css/js/mediaelement/mediaelement.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$(".slider_mas_buscados").bxSlider({

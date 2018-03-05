@@ -12,18 +12,33 @@
 						<li class="item-menu-header head-producto" id="">Productos</li>
 					</a>
 					{% if request.user.is_authenticated %}
-						<a href="{% url 'pedidos:mi_carrito' %}">
+						{% if request.user.is_staff %}
+							<li class="item-menu-header head-mi_carrito" id="">Administrador</li>
+							
+						{% else %}
+							<a href="{% url 'pedidos:mi_carrito' %}">
 							<li class="item-menu-header head-mi_carrito" id="">Mi Carrito</li>
 						</a>
-					{% else %}
-						<a href="{% url 'usuarios:login' %}">
-							<li class="item-menu-header">Log</li>
+						{% endif %}
+					{% endif %}
+					{% if request.user.is_authenticated %}
+						<a href="{% url 'usuarios:user_logout' %}">
+							<li class="item-menu-header" style="color:tomato">Salir</li>
 						</a>
+					{% else %}
+						<a href="{% url 'usuarios:crear_cuenta' %}">
+							<li class="item-menu-header head-crear_cuenta">Crear Cuenta</li>
+						</a>
+					{% endif %}
+
+					{% if not request.user.is_authenticated %}
+					<a href="{% url 'usuarios:login' %}">
+						<li class="item-menu-header head-login" id="">Login</li>
+					</a>
 					{% endif %}
 					<input class="buscador" type="search" 
 					placeholder="Buscar Producto">
-					<svg class="icon icon-search" height="10px">
-					<use xlink:href="#icon-search"></use></svg>
+					<span class="glyphicon glyphicon-search"></span></p>
 				</ul>
 			</div>
 			<div>

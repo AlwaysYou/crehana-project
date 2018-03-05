@@ -2,6 +2,7 @@ body {
   top: 0;
   margin: 0;
   font-family: 'Ropa Sans', sans-serif;
+  font-size: 18px;
 }
 a {
   color: inherit; /* blue colors for links too */
@@ -104,6 +105,12 @@ header {
 .button.-green {
   color: #fff;
   background: #3dd28d;
+  padding 6px
+}
+.button.-green.bt_seguir_comprando {
+  color: #fff;
+  background: #3dd28d;
+  padding 6px
 }
 .container_css_login {
   max-width: 450px;
@@ -115,6 +122,7 @@ header {
 }
 .container_css_registro {
   max-width: 450px;
+  border: 2px dashed #4682b4;
   height: 370px;
   padding: 0 1em;
   margin: 0 auto;
@@ -162,7 +170,6 @@ header {
 .container-carrito {
   width: 800px;
   margin: 0 auto;
-  border: 2px dashed #4682b4;
   padding: 5px;
 }
 .borde_superior_gray {
@@ -181,7 +188,6 @@ header {
   width: 800px;
   height: 150px;
   margin: 0 auto;
-  border: 1px dashed #4682b4;
   padding: 2px;
   margin-bottom: 10px;
   display: flex;
@@ -189,26 +195,22 @@ header {
   align-items: center;
 }
 .bloque_titulo_imagen {
-  border: 1px dashed #4682b4;
   width: 350px;
   height: 100px;
   display: flex;
   justify-content: space-around;
 }
 .bloque_precio {
-  border: 1px dashed #4682b4;
   width: 350px;
   height: 100px;
   text-align: center;
   line-height: 100px;
 }
 .img_cart_itemimagen_cart_item {
-  border: 1px dashed #4682b4;
   width: 200px;
   height: 100px;
 }
 .descripcion_cart_item {
-  border: 1px dashed #ff6347;
   width: 150px;
   height: 100px;
   display: flex;
@@ -226,7 +228,7 @@ header {
 }
 a.remove {
   text-decoration: none;
-  font-family: $fontSans;
+  font-family: 'Ropa Sans', sans-serif;
   color: #fff;
   font-weight: bold;
   background: #e0e0e0;
@@ -238,8 +240,7 @@ a.remove {
 }
 .container_resumen {
   width: 800px;
-  border: 3px dashed #008000;
-  padding: 2px;
+  padding: 0px;
   margin-bottom: 10px;
   display: flex;
   flex-direction: column;
@@ -249,27 +250,33 @@ a.remove {
 .bloque_interno_resumen {
   width: 300px;
   height: 150px;
-  border: 3px dashed #ff6347;
   display: flex;
   justify-content: space-around;
+  padding-right: 77px;
 }
 .bloque_interno_resumen .descripcion {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  margin-bottom: 28px;
 }
 .bloque_interno_resumen .precios {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  margin-bottom: 28px;
 }
 .bloque_boton_pago {
   width: 300px;
-  height: 50px;
-  border: 3px dashed #ff6347;
+  height: 30px;
   text-align: center;
   line-height: 50px;
 }
 .boton_pago {
-  padding: 1em 2em;
+  padding: 0.1em 2em;
+  margin: 0px;
+}
+
+#form_pago{
+  margin-top: -17px;
 }

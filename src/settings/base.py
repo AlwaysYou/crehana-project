@@ -166,9 +166,6 @@ ADMIN_REORDER = (
     {'app': 'web', 'label': 'Información General',
      'models': ('web.InformacionGeneral',
                 )},
-    {'app': 'auth', 'label': 'Administración de Usuarios',
-     'models': ('auth.user',
-                )},
 
     {'app': 'usuarios', 'label': 'Usuarios Registrados',
             'models': ('usuarios.UserProfile',
