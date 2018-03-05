@@ -12,8 +12,8 @@ class Cart(models.Model):
         verbose_name_plural = _('carts')
         ordering = ('-creation_date',)
 
-    def __unicode__(self):
-        return unicode(self.creation_date)
+    def __str__(self):
+        return '00%s' % (self.id)
 
 
 class ItemManager(models.Manager):
@@ -29,7 +29,7 @@ class Item(models.Model):
     cart = models.ForeignKey(Cart, verbose_name=_('cart'))
     quantity = models.PositiveIntegerField(verbose_name=_('quantity'))
     codigo = models.CharField(u"Código", max_length=400)
-    unit_price = models.DecimalField(max_digits=18, decimal_places=2, verbose_name=_('unit price'))
+    unit_price = models.DecimalField(max_digits=18, decimal_places=2, verbose_name=_('Precio'))
     # product as generic relation
     content_type = models.ForeignKey(ContentType)
     object_id = models.PositiveIntegerField()
@@ -42,7 +42,7 @@ class Item(models.Model):
         verbose_name_plural = _('items')
         ordering = ('cart',)
 
-    def __unicode__(self):
+    def __str__(self):
         return u'%d units of %s' % (self.quantity, self.product.__class__.__name__)
 
     @property

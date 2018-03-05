@@ -11,6 +11,7 @@
 
 	<!-- fonts -->
 		<link href="https://fonts.googleapis.com/css?family=Ropa+Sans" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/developers.css' %}">
 		<link rel="stylesheet" href="https://i.icomoon.io/public/temp/1013ff8fbd/UntitledProject/style-svg.css">
 		<script defer src="https://i.icomoon.io/public/temp/1013ff8fbd/UntitledProject/svgxuse.js">
 		</script>
@@ -39,4 +40,9 @@
 <script type="text/javascript" src="{% static '' %}css/js/jquery.bxslider.min.js"></script>
 <script type="text/javascript" src="{% static '' %}css/js/mediaelement/mediaelement.js"></script>
 
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".head-{{header}}").addClass('active')
+	})
+</script>
 </html>

@@ -7,7 +7,7 @@ from .models import Cart, Item
 
 class ItemInline(admin.StackedInline):
     model = Item
-
+    exclude = "content_type", "precio_total_adicional", "quantity"
     extra = 0
 
 

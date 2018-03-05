@@ -10,7 +10,7 @@
 				</div>
 				<div class="cart_sup">
 					<h2>Mi Carrito de compras</h2>
-					<button class="button -green center"> ¿Seguir comprando? </button>
+						<button class="button -green center bt_seguir_comprando"> ¿Seguir comprando? </button>
 				</div>
 				<div class="borde_superior_gray">
 				</div>
@@ -36,12 +36,15 @@
 								S/ {{ item.total_price|stringformat:".2f" }}
 							</div>
 							<div class="bloque_precio">
-								<a href="" class="remove"> x </a>
+								<a href="" class="remove" data-product="{{ item.object_id }}"> x </a>
 							</div>
 						</div>
 					{% endwith %}
 					{% endfor %}
-
+					<form action="{% url 'pedidos:remove_from_cart' %}" method="POST" id="remove-cart-form">
+						{% csrf_token %}
+					<input type="hidden" name="product_id" id="id_curso">
+					</form>
 				</div>
 			</div>
 			<div class="container_resumen">
@@ -60,10 +63,39 @@
 					</div>
 				</div>
 				<div class="bloque_boton_pago">
-					<button class="button -green center boton_pago"> Pagar </button>
+					<form id="form_pago" method="POST" action=".">
+						{% csrf_token %}
+						<input type="hidden" name="precio_total" value="{{cart.summary}}">
+						<button class="button -green center boton_pago"> Pagar </button>
+					</form>
 				</div>
 
 			</div>
 		</div>
 	</section>
+{% endblock %}
+
+{% block js_content %}
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.remove').on('click', function(e){
+		e.preventDefault()
+			id_curso = $(this).attr('data-product')
+			console.log(id_curso, 'DATO');
+			$('#id_curso').val(id_curso)
+			$('#remove-cart-form').submit();
+	})
+	$('.bt_seguir_comprando').on('click', function(e){
+		e.preventDefault();
+		window.location.href = "{% url 'productos:listado' %}"
+	})
+
+	$('.boton_pago').on('click', function(e){
+		alert("Hola")
+		e.preventDefault();
+		$('#form_pago').submit();
+	})
+})
+
+</script>
 {% endblock %}

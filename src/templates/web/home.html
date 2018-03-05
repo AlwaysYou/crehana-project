@@ -9,12 +9,17 @@
 					<div class="caja_producto">
 						<img src="{{curso.img_curso.url}}">
 						<div class="titulo_producto">
-							<span>Cartera 1</span>
+							<span>{{curso.nombre}}</span>
 						</div>
 						<div class="precio_producto">
-							<span>S/ 150 </span>
+							<span>S/ {{curso.precio}} </span>
 						</div>
-						<button type="submit" class="button -green center anadir-carrito" data-product="{{ curso.id }}"> Agregar al carrito </button>
+						<!-- Valida si ya existe el curso en el carrito del usuario -->
+						{% if curso.id in list_id_items %}
+							<button type="submit" disblad="disabled" class="button -tomato center" data-product="{{ curso.id }}"> Curso ya agregado </button>
+						{% else %}
+							<button type="submit" class="button -green center anadir-carrito" data-product="{{ curso.id }}"> Agregar al carrito </button>
+						{% endif %}
 					</div>
 
 				{% endfor %}

@@ -6,16 +6,20 @@ from apps.productos.models import Curso, Categoria
 from django.shortcuts import get_object_or_404, render, redirect
 from apps.usuarios.models import UserProfile
 from django.core.urlresolvers import reverse, reverse_lazy
-
+from .utils import get_next_codigo_pedido
 from apps.cart.cart import Cart
+from .forms import PedidoForm
 # Create your views here.
 
 def mi_carrito(request):
+    header = "mi_carrito"
     try:
         profile = request.user.userprofile
     except:
-        print("error")
+        """ Logout si no existe userprofile """
         return redirect(reverse('usuarios:user_logout'))
+
+    """ Si existe el profile, obtenemos el cart de ese profile"""
     if profile:
         cart = Cart(request)
         flag_mostrar_productos = False
@@ -24,6 +28,26 @@ def mi_carrito(request):
             flag_mostrar_productos = True
         items = cart.cart.item_set.all()
         items_cursos = [(item, item.get_product()) for item in items]
+
+    """ Bloque para pago """
+    # Consultamos al numero de pedido
+    if request.method == 'POST':
+        print("Soy POST")
+        form = PedidoForm(request.POST)
+        if form.is_valid():
+            pedido = form.save(commit=False)
+            pedido.cart = cart.cart
+            pedido.usuario = profile
+            pedido.numero_pedido = get_next_codigo_pedido()
+            pedido.precio_total = cart.summary()
+            del request.session['CART-ID']
+            del request.session['numero_pedido']
+            profile.cart = None
+            profile.save()
+            pedido.save()
+            return redirect(reverse('pedidos:gracias'))
+        else:
+            print(form.errors, "<- errores!!!")
     return render(request, 'pedidos/mi_carrito.html', locals())
 
 
@@ -53,9 +77,13 @@ def add_to_cart(request):
 
 def remove_from_cart(request):
     print('VIEW: remove_from_cart')
-    curso_id = request.GET.get('curso_id')
+    curso_id = request.POST.get('product_id')
     curso_id = int(curso_id)
     curso = get_object_or_404(Curso, id=curso_id)
     cart = Cart(request)
     cart.remove(curso)
     return redirect(reverse('pedidos:mi_carrito'))
+
+def gracias(request):
+
+    return render(request, 'pedidos/gracias.html', locals())

@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^mi-carrito/$', views.mi_carrito, name='mi_carrito'),
     url(r'^agregar-producto/$', views.add_to_cart, name='add_to_cart'),
     url(r'^remover-producto/$', views.remove_from_cart, name='remove_from_cart'),
+    url(r'^gracias/$', views.gracias, name='gracias'),
     
 
 ]
