@@ -75,8 +75,7 @@ def add_to_cart(request):
             profile.cart = cart.cart
             profile.save()
     except:
-        return redirect(reverse('usuarios:crear_cuenta'))
-
+        return redirect(reverse('usuarios:login'))
 
     return redirect(reverse('pedidos:mi_carrito'))
 
