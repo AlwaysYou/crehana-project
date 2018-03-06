@@ -143,7 +143,6 @@ STATIC_ROOT = ''
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
-print(STATICFILES_DIRS, "<- STATICFILES_DIRS")
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -155,7 +154,6 @@ DEFAULT_FROM_EMAIL = ENV.get('DEFAULT_FROM_EMAIL', '')
 SERVER_EMAIL = ENV.get('SERVER_EMAIL', '')
 EMAIL_PORT = ENV.get('EMAIL_PORT', '')
 EMAIL_USE_TLS = True
-ADMIN_URL = 'admin-privated'
 
 
 

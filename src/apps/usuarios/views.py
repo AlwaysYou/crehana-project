@@ -35,6 +35,7 @@ def login(request):
 
     return render(request, 'usuarios/login.html', locals())
 
+
 def crear_cuenta(request):
     header = "crear_cuenta"
     error = False
@@ -44,7 +45,7 @@ def crear_cuenta(request):
         if profile_form.is_valid():
             password = request.POST['password']
             profile_form.save(password)
-
+            profile_form.enviaEmail()
             user = profile_form.auth(password)
             log_django(request, user)
             return redirect(reverse('web:home'))

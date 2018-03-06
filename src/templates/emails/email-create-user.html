@@ -1,0 +1,22 @@
+{% extends "common/_email.html" %}
+{% load static %}
+
+{% block title %}Usuario Nuevo{% endblock %}
+
+
+{% block logo %}
+
+    <img src="{{ info.site }}{% static 'css/img/logo_creana.jpg' %}" alt="-" style="-ms-interpolation-mode:bicubic;">
+
+{% endblock %}
+
+
+{% block content %}
+
+    <h4 class="secondary">
+        <strong>Bienvenido</strong>
+        </h4>
+        <p>Bienvenido a Crehana, esto solo es una prueba :)</p>
+
+
+{% endblock %}

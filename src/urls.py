@@ -10,9 +10,6 @@ from apps.productos import urls as productos_urls
 from apps.web import urls as web_urls
 from apps.pedidos import urls as pedidos_urls
 
-
-ADMIN_URL = settings.ADMIN_URL
-
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^admin/filebrowser/', include(site.urls)),
