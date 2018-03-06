@@ -156,14 +156,11 @@ EMAIL_PORT = ENV.get('EMAIL_PORT', '')
 EMAIL_USE_TLS = True
 
 
-
 ADMIN_REORDER = (
     # Keep original label and models
 
     # Reorder app models
-    {'app': 'auth', 'label': 'Administración de Usuarios',
-     'models': ('auth.user',
-                )},
+
     {'app': 'web', 'label': 'Información General',
      'models': ('web.InformacionGeneral',
                 )},
