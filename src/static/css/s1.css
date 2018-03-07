@@ -19,6 +19,7 @@ header {
     top: 0px;
     background: white;
     z-index: 40;
+    width: 100%;
 
   }
 }
@@ -64,6 +65,12 @@ header {
   font-weight: 400;
   font-family: 'Ropa Sans', sans-serif;
 }
+@media screen and (max-width: 480px) {
+  .item-menu-header {
+    margin-bottom: 20px;
+    margin-right: 7px;
+  }
+}
 .icon-mundo {
   font-family: "Roboto";
 }
@@ -93,9 +100,20 @@ header {
   flex-direction: column;
   align-items: center;
 }
+
 @media screen and (max-width: 480px) {
   .mas_buscados__bloque {
-    padding-top: 80px;
+    padding-top: 50px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .block_home_res {
+    padding-top: 150px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .login-container {
+    padding-top: 150px;
   }
 }
 .container {
@@ -174,7 +192,8 @@ header {
 }
 @media screen and (max-width: 480px){
   .container_css_login{
-    height: 350px;
+    height: 100%;
+    padding-top: 30px;
   }
 }
 .container_css_registro {
@@ -184,6 +203,12 @@ header {
   padding: 0 1em;
   margin: 0 auto;
   position: relative;
+}
+@media screen and (max-width: 480px){
+  .container_css_registro{
+    padding-top: 20px;
+    height: 100%;
+  }
 }
 .bloque_items_categorias {
   max-width: 1300px;
@@ -352,4 +377,9 @@ a.remove {
 }
 
 /* Resonsive */
+@media screen and (max-width: 480px){
+  .bloque-crear-cuenta{
+    padding-top: 170px;
 
+  }
+}
