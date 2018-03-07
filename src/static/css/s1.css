@@ -11,7 +11,10 @@ a {
 header {
   border: 2px dashed #4682b4;
   padding: 13px 0;
-  position: relative;
+  position: fixed;
+  top: 0px;
+  background: white;
+  z-index: 40;
 }
 .header_contenedor {
   width: 100%;
@@ -76,10 +79,16 @@ header {
 .mas_buscados {
   padding: 1em 0;
 }
+
 .mas_buscados__bloque {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+@media screen and (max-width: 480px) {
+  .mas_buscados__bloque {
+    padding-top: 80px;
+  }
 }
 .container {
   max-width: 1000px;
@@ -213,6 +222,12 @@ header {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+}
+@media screen and (max-width: 480px){
+  .productos{
+    padding-top: 170px;
+
+  }
 }
 .container-carrito {
   width: 800px;
