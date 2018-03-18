@@ -61,10 +61,11 @@
 					</div>
 				</div>
 				<div class="bloque_boton_pago">
-					<form id="form_final" method="POST" action=".">
-						{% csrf_token %}
+					<form id="form_final">
 						<input type="hidden" name="estado" value="pagado">
-						<button class="button -green center boton_pago"> Pagar </button>
+						<div class="clase_ejemplo">
+							<button class="button -green center boton_pago"> Pagar </button>
+						</div>
 					</form>
 				</div>
 
@@ -87,10 +88,25 @@ $(document).ready(function(){
 		e.preventDefault();
 		window.location.href = "{% url 'productos:listado' %}"
 	})
+    var reverse_pedido_realizado = "{% url 'pedidos:gracias' %}"
 
 	$('.boton_pago').on('click', function(e){
 		e.preventDefault();
-		$('#form_final').submit();
+		$('.bloque_boton_pago').addClass('active')
+		$.ajax(
+			{
+				url: "{% url 'pedidos:mi_carrito_pago' %}",
+				type: 'POST',
+				dataType: 'json',
+				data: {'estado': 'pagado'},
+				success: function(data){
+					console.log("todo ok")
+					$('.bloque_boton_pago').removeClass('active')
+					window.location.replace(reverse_pedido_realizado);
+				}
+			}
+		)
+		// $('#form_final').submit();
 	})
 })
 

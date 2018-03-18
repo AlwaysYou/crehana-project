@@ -11,6 +11,10 @@ from apps.cart.cart import Cart
 from .forms import PedidoForm
 from apps.web.models import InformacionGeneral
 from apps.pedidos.models import Pedido
+
+# Paquetes para la respuesta JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
 # Create your views here.
 
 def mi_carrito(request):
@@ -59,6 +63,43 @@ def mi_carrito(request):
         else:
             print(form.errors, "<- errores!!!")
     return render(request, 'pedidos/mi_carrito.html', locals())
+
+
+@csrf_exempt
+def mi_carrito_pago(request):
+    print("ENTRO")
+    profile = request.user.userprofile
+    data = {'status': 'error'}
+    cart = Cart(request)
+    # Suma para el precio final
+    _subtotal = cart.summary()
+    info_general = InformacionGeneral.objects.get(pk=1)
+    taxi = info_general.taxi
+    if taxi:
+        total = _subtotal + taxi
+    else:
+        total = _subtotal
+    """ Bloque para pago """
+    # Consultamos al numero de pedido
+    if request.method == 'POST':
+        print("Soy POST")
+        form = PedidoForm(request.POST)
+        if form.is_valid():
+            pedido = form.save(commit=False)
+            pedido.cart = cart.cart
+            pedido.usuario = profile
+            pedido.numero_pedido = get_next_codigo_pedido()
+            pedido.precio_total = total
+            del request.session['CART-ID']
+            del request.session['numero_pedido']
+            profile.cart = None
+            profile.save()
+            pedido.save()
+        else:
+            print(form.errors, "<- errores!!!")
+    else:
+        print("NO SOY  POST")
+    return JsonResponse(data)
 
 
 @require_POST

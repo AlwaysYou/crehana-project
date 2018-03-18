@@ -366,11 +366,39 @@ a.remove {
   height: 30px;
   text-align: center;
   line-height: 50px;
+  position: relative;
 }
 .boton_pago {
   padding: 0.1em 2em;
   margin: 0px;
 }
+.bloque_boton_pago.active:after{
+  content: '';
+  position: absolute;
+  margin: auto;
+  width: 300px;
+  height: 100px;
+  background: rgba(0, 0, 0, 0);
+  top: 0px;
+  left: 0px;
+  margin: 0 auto;
+  z-index: 100;
+}
+
+.bloque_boton_pago.active:before{
+  content: '';
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  margin: auto;
+  height: 50px;
+  width: 50px;
+  background-image: url("img/tenor.gif");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+}
+
 
 #form_pago{
   margin-top: -17px;
