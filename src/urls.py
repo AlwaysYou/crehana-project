@@ -9,6 +9,7 @@ from apps.usuarios import urls as usuarios_urls
 from apps.productos import urls as productos_urls
 from apps.web import urls as web_urls
 from apps.pedidos import urls as pedidos_urls
+from apps.checkout import urls as checkout_urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -17,6 +18,7 @@ urlpatterns = [
     url(r'^usuarios/', include(usuarios_urls, namespace='usuarios')),
     url(r'^productos/', include(productos_urls, namespace='productos')),
     url(r'^pedidos/', include(pedidos_urls, namespace='pedidos')),
+    url(r'^checkout/', include(checkout_urls, namespace='checkout')),
 
 
 ] + (static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) +
