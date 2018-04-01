@@ -89,9 +89,10 @@ $(document).ready(function(){
 		window.location.href = "{% url 'productos:listado' %}"
 	})
     var reverse_pedido_realizado = "{% url 'pedidos:gracias' %}"
-
+	var reverse_checkout_page = "{% url 'checkout:checkout' %}"
 	$('.boton_pago').on('click', function(e){
 		e.preventDefault();
+		window.location.replace(reverse_checkout_page);
 		$('.bloque_boton_pago').addClass('active')
 		$.ajax(
 			{

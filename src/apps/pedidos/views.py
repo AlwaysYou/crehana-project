@@ -54,8 +54,6 @@ def mi_carrito(request):
             pedido.usuario = profile
             pedido.numero_pedido = get_next_codigo_pedido()
             pedido.precio_total = total
-            del request.session['CART-ID']
-            del request.session['numero_pedido']
             profile.cart = None
             profile.save()
             pedido.save()
@@ -91,7 +89,6 @@ def mi_carrito_pago(request):
             pedido.numero_pedido = get_next_codigo_pedido()
             pedido.precio_total = total
             del request.session['CART-ID']
-            del request.session['numero_pedido']
             profile.cart = None
             profile.save()
             pedido.save()

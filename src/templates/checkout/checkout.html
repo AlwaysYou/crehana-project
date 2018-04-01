@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     {% endblock head %}
 {% block content %}
-    <div class="container__checkout " style="padding-top: 40px;">
+    <div class="container__checkout " style="padding-top: 10px;">
       <div id="Checkout" class="inline">
           <h1>Pay Invoice</h1>
           <div class="card-row">
@@ -16,18 +16,16 @@
               <span class="amex"></span>
               <span class="discover"></span>
           </div>
-          <form>
+          <form method="POST" action=".">
+              {% csrf_token %}
               <div class="form-group">
                   <label for="PaymentAmount">Payment amount</label>
                   <div class="amount-placeholder">
-                      <span>$</span>
-                      <span>500.00</span>
+                      <span>S/.</span>
+                      <span>{{total}}</span>
                   </div>
               </div>
-              <div class="form-group">
-                  <label or="NameOnCard">Name on card</label>
-                  <input id="NameOnCard" class="form-control" type="text" maxlength="255"></input>
-              </div>
+
               <div class="form-group">
                   <label for="CreditCardNumber">Card number</label>
                   <input id="CreditCardNumber" class="null card-image form-control" type="text"></input>
@@ -54,9 +52,9 @@
                       <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-placement="left" data-content="Enter the ZIP/Postal code for your credit card billing address."><i class="fa fa-question-circle"></i></a>
                   </div>
               </div>
-              <button id="PayButton" class="btn btn-block btn-success submit-button" type="submit">
+              <button id="PayButton" class="btn btn-block btn-success submit-button boton_pago" type="submit">
                   <span class="submit-button-lock"></span>
-                  <span class="align-middle">Pay $500.00</span>
+                  <span class="align-middle">Pay S/{{total}}</span>
               </button>
           </form>
       </div>
@@ -66,4 +64,26 @@
 {% block js_content %}
 <script type="text/javascript" src="{% static 'css/js/checkout.js' %}"></script>
 
+<script type="text/javascript">
+var reverse_pedido_realizado = "{% url 'pedidos:gracias' %}"
+
+$(document).ready(function(){
+    $('.boton_pago').on('click', function(e){
+            e.preventDefault();
+            $.ajax(
+                {
+                    url: "{% url 'pedidos:mi_carrito_pago' %}",
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {'estado': 'pagado'},
+                    success: function(data){
+                        console.log("todo ok")
+                        window.location.replace(reverse_pedido_realizado);
+                    }
+                }
+            )
+            // $('#form_final').submit();
+        })
+    });
+</script>
 {% endblock %}

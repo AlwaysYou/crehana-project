@@ -19,25 +19,19 @@ class ItemDoesNotExist(Exception):
 class Cart:
     def __init__(self, request):
         try:
+            """ Verificamos si el usuario cuenta con cart id """
             profile = UserProfile.objects.get(user__id=request.user.id)
             cart_id = profile.cart.id
-            print("El profile cuenta con Cart id")
+
         except:
-            cart_id = request.session.get(CART_ID)
-            print("Except - Init, El cart_id es:", cart_id)
+            """ en este caso no existe un Cart_id, por ende cart_id=None"""
+            cart_id = None
 
         if cart_id:
             try:
                 # Si existe en la base de datos, lo cojemos
-                print("Existe el cart_id - entro al if")
                 cart = Cart_model.objects.get(id=cart_id, checked_out=False)
-                try:
-                    pedido = Pedido.objects.get(cart=cart)
-                    request.session['numero_pedido'] = pedido.numero_pedido
-                    print("HAY CART_ID SE ASOCIA A ALGUN PEDIDO // CART LINEA 39 Y GUARDAMOS EN SESION EL NUMERO DEL PEDIDO")
-                except:
-                    request.session['numero_pedido'] = None
-                    print("No hay cart, no se asocia a ningun pedido")
+                request.session[CART_ID] = cart.id
             except Cart_model.DoesNotExist:
                 # Si no existe, lo creamos
                 cart = self.new(request)
