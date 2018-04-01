@@ -65,7 +65,6 @@ def mi_carrito(request):
 
 @csrf_exempt
 def mi_carrito_pago(request):
-    print("ENTRO")
     profile = request.user.userprofile
     data = {'status': 'error'}
     cart = Cart(request)
@@ -88,6 +87,8 @@ def mi_carrito_pago(request):
             pedido.usuario = profile
             pedido.numero_pedido = get_next_codigo_pedido()
             pedido.precio_total = total
+            # Culqi integration
+            #begin_culqi(profile, num_pedido, _token)
             del request.session['CART-ID']
             profile.cart = None
             profile.save()

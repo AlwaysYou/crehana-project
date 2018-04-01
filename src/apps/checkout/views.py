@@ -2,12 +2,21 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.core.urlresolvers import reverse
 from apps.cart.cart import Cart
 from apps.web.models import InformacionGeneral
+from django.conf import settings
+import culqipy
 
 # Create your views here.
 
+culqi_public_key = settings.ENV.get("CULQI_PUBLIC_KEY")
+culqi_secret_key = settings.ENV.get("CULQI_SECRET_KEY")
+
+culqipy.public_key = culqi_public_key
+culqipy.secret_key = culqi_secret_key
+
 
 def checkout(request):
-    header = "mi_carrito"
+    culqi_public_key = settings.ENV.get("CULQI_PUBLIC_KEY")
+
     try:
         profile = request.user.userprofile
     except:
