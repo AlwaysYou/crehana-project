@@ -2,19 +2,20 @@
 
 from django.shortcuts import render
 from django.views.decorators.http import require_POST
-from apps.productos.models import Curso, Categoria
 from django.shortcuts import get_object_or_404, render, redirect
-from apps.usuarios.models import UserProfile
 from django.core.urlresolvers import reverse, reverse_lazy
-from .utils import get_next_codigo_pedido
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from apps.usuarios.models import UserProfile
 from apps.cart.cart import Cart
-from .forms import PedidoForm
 from apps.web.models import InformacionGeneral
 from apps.pedidos.models import Pedido
+from apps.productos.models import Curso
+from apps.checkout.third_party.culqi import culqi_begin
 
-# Paquetes para la respuesta JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse
+from .forms import PedidoForm
+from .utils import get_next_codigo_pedido
+import json
 # Create your views here.
 
 def mi_carrito(request):
@@ -79,22 +80,24 @@ def mi_carrito_pago(request):
     """ Bloque para pago """
     # Consultamos al numero de pedido
     if request.method == 'POST':
-        print("Soy POST")
-        form = PedidoForm(request.POST)
-        if form.is_valid():
-            pedido = form.save(commit=False)
-            pedido.cart = cart.cart
-            pedido.usuario = profile
-            pedido.numero_pedido = get_next_codigo_pedido()
-            pedido.precio_total = total
-            # Culqi integration
-            #begin_culqi(profile, num_pedido, _token)
-            del request.session['CART-ID']
-            profile.cart = None
-            profile.save()
-            pedido.save()
-        else:
-            print(form.errors, "<- errores!!!")
+        _token = request.POST.get('token')
+        token = json.loads(_token)
+        culqi_begin(profile, pedido.numero_pedido, token)
+        # form = PedidoForm(request.POST)
+        # if form.is_valid():
+        #     pedido = form.save(commit=False)
+        #     pedido.cart = cart.cart
+        #     pedido.usuario = profile
+        #     pedido.numero_pedido = get_next_codigo_pedido()
+        #     pedido.precio_total = total
+        #     # Culqi integration
+        #     del request.session['CART-ID']
+        #     profile.cart = None
+        #     profile.save()
+        # pedido.save()
+        print("Culqi trying")
+        # else:
+        #     print(form.errors, "<- errores!!!")
     else:
         print("NO SOY  POST")
     return JsonResponse(data)

@@ -4,10 +4,10 @@
     <link rel="stylesheet" href="{% static '' %}css/checkout.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-
-    {% endblock head %}
-    {% block content %}
     <script src="https://checkout.culqi.com/v2"></script>
+    {% endblock head %}
+
+    {% block content %}
     <script type="text/javascript">
       Culqi.publicKey = "{{ culqi_public_key }}";
       Culqi.init();
@@ -21,7 +21,7 @@
                   <span class="amex"></span>
                   <span class="discover"></span>
               </div>
-              <form method="POST" action=".">
+              <form method="POST" class="form_culqi_token">
                   {% csrf_token %}
                   <div class="form-group">
                       <label for="PaymentAmount">Payment amount</label>
@@ -33,7 +33,7 @@
 
                   <div class="form-group">
                       <label for="CreditCardNumber">Card number</label>
-                      <input id="CreditCardNumber" class="null card-image form-control culqi_tarjeta" type="text" id="card[number]">
+                      <input class="null card-image form-control culqi_tarjeta" type="text">
                       
                       <input type="text" placeholder="Numero de tarjeta" class="culqi_card_hidden" style="display:none" data-culqi="card[number]"  id="card[number]">
                   </div>
@@ -61,7 +61,7 @@
                       </div>
                   </div>
 
-                  <button id="PayButton" class="btn btn-block btn-success submit-button boton_pago" type="submit">
+                  <button id="PayButton" class="btn btn-block btn-success submit-button boton_pago">
                       <span class="submit-button-lock"></span>
                       <span class="align-middle">Pay S/{{total}}</span>
                   </button>
@@ -71,44 +71,59 @@
     {% endblock %}
 
 {% block js_content %}
-<script type="text/javascript" src="{% static 'css/js/checkout.js' %}"></script>
 
 <script type="text/javascript">
-var reverse_pedido_realizado = "{% url 'pedidos:gracias' %}"
+    $(document).ready(function(){
 
-$(document).ready(function(){
-      $('.culqi_tarjeta').keyup(function(){
-        numero_de_tarjeta = $(this).val().replace(/-/g, '')
-        $('.culqi_card_hidden').val(numero_de_tarjeta);
-      })
+        var reverse_pedido_realizado = "{% url 'pedidos:gracias' %}"
 
-      $('.culqi_month_year').keyup(function (e){
-        e.preventDefault();
-        month_year = $(this).val();
-        month = month_year.split('/')[0]
-        year = month_year.split('/')[1]
-        $('.culqi_month').val(month);
-        $('.culqi_year').val(year);
+        $('.culqi_tarjeta').keyup(function(){
+          numero_de_tarjeta = $(this).val().replace(/-/g, '')
+          $('.culqi_card_hidden').val(numero_de_tarjeta);
+        })
+
+        $('.culqi_month_year').keyup(function (e){
+          e.preventDefault();
+          month_year = $(this).val();
+          month = month_year.split('/')[0]
+          year = month_year.split('/')[1]
+          $('.culqi_month').val(month);
+          $('.culqi_year').val(year);
 
           if (e.keyCode != 8) {
-            var cantidad = $('.culqi_month_year').val().length;
-            if (cantidad == 2) {
-              $('.culqi_month_year').val($('.culqi_month_year').val() + "/20")
+             var cantidad = $('.culqi_month_year').val().length;
+             if (cantidad == 2) {
+               $('.culqi_month_year').val($('.culqi_month_year').val() + "/20")
+              }
             }
-          }
 
-      })
+        })
 
-    function culqi(){
-      console.log("Iniciando con culqi")
-      }
+      function culqi(){
+        alert("Culqi Init")
+        console.log("Iniciando con culqi")
+          culqi_token = Culqi.token.id;
+          alert(culqi_token)
+              $.ajax(
+                  {
+                      url: "{% url 'pedidos:mi_carrito_pago' %}",
+                      type: 'POST',
+                      dataType: 'json',
+                      data: {'estado': 'pagado', 'token': JSON.stringify(culqi_token)},
+                      success: function(data){
+                          // window.location.replace(reverse_pedido_realizado);
+                      }
+                  }
+              )
+        }
 
     $('.boton_pago').click(function (ev) {
             ev.preventDefault();
             Culqi.createToken();
+            culqi();
     })
 
 
     });
-</script>
+  </script>
 {% endblock %}
