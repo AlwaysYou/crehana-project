@@ -4,6 +4,8 @@
     <link rel="stylesheet" href="{% static '' %}css/checkout.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://checkout.culqi.com/v2"></script>
     {% endblock head %}
 
@@ -66,8 +68,42 @@
                       <span class="align-middle">Pay S/{{total}}</span>
                   </button>
               </form>
+              <br>
+              <br>
+              <h2 style="text-align:center; color:tomato"> Tarjetas de prueba </h2>
+              <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>Number</th>
+                    <th>Expired Date</th>
+                    <th>Security Code</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>4111 1111 1111 1111</td>
+                    <td>09/2020</td>
+                    <td>123</td>
+                  </tr>
+                  <tr>
+                    <td>4444 3333 2222 1111</td>
+                    <td>09/2019</td>
+                    <td>123</td>
+                  </tr>
+                  <tr>
+                    <td>5111 1111 1111 1118	</td>
+                    <td>06/2020</td>
+                    <td>472</td>
+                  </tr>
+                </tbody>
+                    </table>
+                    </div>
+
+            </table>
+
           </div>
-        </div>
+
+
     {% endblock %}
 
 {% block js_content %}
