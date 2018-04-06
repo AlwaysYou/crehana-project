@@ -177,3 +177,6 @@ ADMIN_REORDER = (
                        )},
 
 )
+
+CULQI_PUBLIC_KEY = ENV.get('CULQI_PUBLIC_KEY', '')
+CULQI_SECRET_KEY = ENV.get('CULQI_SECRET_KEY', '')
