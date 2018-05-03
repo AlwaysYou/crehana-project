@@ -4,14 +4,17 @@ from django.http import JsonResponse
 import culqipy
 from django.conf import settings
 
-culqipy.public_key = settings.ENV.get('CULQI_PUBLIC_KEY')
-culqipy.secret_key = settings.ENV.get('CULQI_SECRET_KEY')
 
-def culqi_begin(profile, n_pedido, _token):
-    token = json.loads(_token)
+class Culqi(object):
+    culqi_public_key = settings.ENV.get('CULQI_PUBLIC_KEY')
+    culqi_secret_key = settings.ENV.get('CULQI_SECRET_KEY')
+    culqipy.public_key = culqi_public_key
+    culqipy.secret_key = culqi_secret_key
 
-    data =  {'status': 'error', 'msj': ''}
-    # Integrar log
-    print(token, "<- Token")
+    def __init__(self, _token, profile, pedido=None):
+        self.profile = profile
+        self.token = json.loads(_token)
+        self.pedido = pedido
+        self.error = None
 
-
+    #def create_card(self, token, pedido, profile):

@@ -11,7 +11,7 @@ from apps.cart.cart import Cart
 from apps.web.models import InformacionGeneral
 from apps.pedidos.models import Pedido
 from apps.productos.models import Curso
-from apps.checkout.third_party.culqi import culqi_begin
+#from apps.checkout.third_party.culqi import culqi_begin
 
 from .forms import PedidoForm
 from .utils import get_next_codigo_pedido
@@ -78,11 +78,10 @@ def mi_carrito_pago(request):
     else:
         total = _subtotal
     """ Bloque para pago """
-    # Consultamos al numero de pedido
     if request.method == 'POST':
+        # Consultamos al numero de pedido
         _token = request.POST.get('token')
-        token = json.loads(_token)
-        culqi_begin(profile, pedido.numero_pedido, token)
+        Culqi(_token, profile, pedido)
         # form = PedidoForm(request.POST)
         # if form.is_valid():
         #     pedido = form.save(commit=False)
