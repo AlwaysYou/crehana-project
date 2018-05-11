@@ -78,7 +78,6 @@ PyNaCl==1.2.1
 pyparsing==2.2.0
 pytest==3.5.0
 pytest-cov==2.5.1
-pytest-ipdb==0.1
 python-dateutil==2.7.1
 python-geoip==1.2
 python-geoip-geolite2==2015.303
