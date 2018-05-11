@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 AUTH_SECRET_KEY = "AUTH_SECRET"
 
 import os
+import dj_database_url
 from .util import get_env
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -177,3 +178,6 @@ ADMIN_REORDER = (
                        )},
 
 )
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+
