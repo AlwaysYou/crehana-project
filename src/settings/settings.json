@@ -1,0 +1,26 @@
+{
+    "DB_NAME": "ownproject_crehana",
+    "DB_USER": "crehana",
+    "DB_PASSWORD": "142857ch",
+
+    "URL_SITE": "http://127.0.0.1:8000",
+    "SECRET_KEY": "my_super_secret_key",
+
+    "EMAIL_HOST": "",
+    "EMAIL_HOST_USER": "",
+    "EMAIL_HOST_PASSWORD": "",
+    "DEFAULT_FROM_EMAIL": "",
+    "SERVER_EMAIL": "",
+    "EMAIL_PORT": 587,
+
+    "MEDIA_ROOT": "",
+    "MEDIA_URL": "/media/",
+    "STATIC_ROOT": "",
+    "STATIC_URL": "/static/",
+    "ALLOWED_HOSTS": ["127.0.0.1", ".herokuapp.com"],
+
+    "WORKON_HOME": "/home/{user}/.envs",
+    "ENV": "django_1_10",
+    "CULQI_PUBLIC_KEY": "pk_test_ePo1cNxsw1rBYdCu",
+    "CULQI_SECRET_KEY": "sk_test_fxUK0GlTywkkJaVW"
+}
