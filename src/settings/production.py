@@ -6,7 +6,7 @@ DEBUG = False
 PREPEND_WWW = False
 
 # DIRS
-
+print("ENTRE AL PRODUCTION @@@@@@@@@@@@@")
 MEDIA_ROOT = ENV.get('MEDIA_ROOT', '')
 MEDIA_URL = ENV.get('MEDIA_URL', '')
 
