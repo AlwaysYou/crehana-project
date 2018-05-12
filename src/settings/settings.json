@@ -17,7 +17,7 @@
     "MEDIA_URL": "/media/",
     "STATIC_ROOT": "",
     "STATIC_URL": "/static/",
-    "ALLOWED_HOSTS": ["127.0.0.1", ".herokuapp.com"],
+    "ALLOWED_HOSTS": ["127.0.0.1", "deploy-hans.herokuapp.com"],
 
     "WORKON_HOME": "/home/{user}/.envs",
     "ENV": "django_1_10",
