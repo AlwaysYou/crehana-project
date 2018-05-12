@@ -7,12 +7,11 @@ DEBUG = False
 PREPEND_WWW = False
 
 # DIRS
-STATIC_URL = '/static/'
-STATIC_ROOT = "/static/"
+STATIC_ROOT = ENV.get('STATIC_ROOT', '')
+STATIC_URL = ENV.get('STATIC_URL', '')
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = '/media/'
-
+MEDIA_ROOT = ENV.get('MEDIA_ROOT', '')
+MEDIA_URL = ENV.get('MEDIA_URL', '')
 
 ALLOWED_HOSTS = ENV.get('ALLOWED_HOSTS', '')
 
