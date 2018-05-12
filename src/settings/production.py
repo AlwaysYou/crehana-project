@@ -1,17 +1,23 @@
 # -*- coding: utf-8 -*-
 # production.py
 from .base import *
+import os
 
 DEBUG = False
 PREPEND_WWW = False
 
 # DIRS
 print("ENTRE AL PRODUCTION @@@@@@@@@@@@@")
-MEDIA_ROOT = ENV.get('MEDIA_ROOT', '')
-MEDIA_URL = ENV.get('MEDIA_URL', '')
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-STATIC_ROOT = ENV.get('STATIC_ROOT', '')
-STATIC_URL = ENV.get('STATIC_URL', '')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
 ALLOWED_HOSTS = ENV.get('ALLOWED_HOSTS', '')
 
 # SESSIONS
