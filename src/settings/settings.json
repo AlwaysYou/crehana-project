@@ -6,12 +6,14 @@
     "URL_SITE": "http://127.0.0.1:8000",
     "SECRET_KEY": "my_super_secret_key",
 
-    "EMAIL_HOST": "",
-    "EMAIL_HOST_USER": "",
-    "EMAIL_HOST_PASSWORD": "",
-    "DEFAULT_FROM_EMAIL": "",
-    "SERVER_EMAIL": "",
-    "EMAIL_PORT": 587,
+    "EMAIL_HOST" : "smtp.webfaction.com",
+    "EMAIL_HOST_USER" : "dmotif",
+    "EMAIL_HOST_PASSWORD" : "devstaff142!.",
+    "DEFAULT_FROM_EMAIL" : "prueba@prueba.com",
+    "SERVER_EMAIL": "dmotif@screativa.com",
+    "EMAIL_PORT" : 587,
+
+
 
     "MEDIA_ROOT": "",
     "MEDIA_URL": "/media/",
